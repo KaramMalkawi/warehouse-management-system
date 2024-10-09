@@ -1,0 +1,55 @@
+<form class="form" [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
+  <h2 class="form-title">Login</h2>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Username:</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="username"
+      placeholder="Enter Username"
+    />
+    <mat-error *ngIf="loginForm.get('username')?.hasError('required')"
+      >Username is required</mat-error
+    >
+    <mat-error *ngIf="loginForm.get('username')?.hasError('minlength')">
+      Username must be at least 3 characters long
+    </mat-error>
+  </mat-form-field>
+
+  <br />
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Password:</mat-label>
+    <input
+      matInput
+      type="password"
+      formControlName="password"
+      placeholder="Enter Password"
+    />
+    <mat-error *ngIf="loginForm.get('password')?.hasError('required')"
+      >Password is required</mat-error
+    >
+    <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
+      Password must be at least 6 characters long
+    </mat-error>
+  </mat-form-field>
+
+  <br />
+
+  <button
+    mat-stroked-button
+    type="submit"
+    class="btn btn-primary form-btn"
+    [disabled]="loginForm.invalid"
+  >
+    Login
+  </button>
+
+  <a
+    class="form-link"
+    (click)="navigateToSignup()"
+    routerLinkActive="router-link-active"
+    >I don't have an account</a
+  >
+</form>

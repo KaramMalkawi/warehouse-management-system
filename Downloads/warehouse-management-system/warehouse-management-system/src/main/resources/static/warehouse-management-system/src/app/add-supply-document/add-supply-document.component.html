@@ -1,0 +1,92 @@
+<app-employee-navbar></app-employee-navbar>
+
+<form [formGroup]="warehouseForm" (ngSubmit)="handleSubmit()" class="form">
+  <h2 class="form-title">Add Supply Documents</h2>
+
+  <!-- Name Field with Error Message -->
+  <mat-form-field class="example-full-width">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" placeholder="Enter Name" required />
+    <!-- Error Messages for Name Field -->
+    <mat-error *ngIf="warehouseForm.get('name')?.hasError('required')">
+      Name is required
+    </mat-error>
+    <mat-error *ngIf="warehouseForm.get('name')?.hasError('minlength')">
+      Name must be at least 3 characters
+    </mat-error>
+    <mat-error *ngIf="warehouseForm.get('name')?.hasError('maxlength')">
+      Name cannot exceed 10 characters
+    </mat-error>
+    <mat-error *ngIf="warehouseForm.get('name')?.hasError('pattern')">
+      Name can only contain letters
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Subject Field with Error Message -->
+  <mat-form-field class="example-full-width">
+    <mat-label>Subject</mat-label>
+    <input matInput formControlName="subject" placeholder="Enter Subject" />
+    <!-- Error Messages for Subject Field -->
+    <mat-error *ngIf="warehouseForm.get('subject')?.hasError('minlength')">
+      Subject must be at least 3 characters
+    </mat-error>
+    <mat-error *ngIf="warehouseForm.get('subject')?.hasError('maxlength')">
+      Subject cannot exceed 50 characters
+    </mat-error>
+    <mat-error *ngIf="warehouseForm.get('subject')?.hasError('pattern')">
+      Subject can only contain letters
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Item dropdown -->
+  <mat-form-field class="example-full-width">
+    <mat-label>Select Item</mat-label>
+    <mat-select formControlName="itemId" required>
+      <mat-option *ngFor="let item of items" [value]="item.id">
+        {{ item.name }}
+      </mat-option>
+    </mat-select>
+    <mat-error
+      *ngIf="
+        warehouseForm.get('itemId')?.invalid &&
+        warehouseForm.get('itemId')?.touched
+      "
+    >
+      Item is required.
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Warehouse dropdown -->
+  <mat-form-field class="example-full-width">
+    <mat-label>Select Warehouse</mat-label>
+    <mat-select formControlName="warehouseId" required>
+      <mat-option *ngFor="let warehouse of warehouses" [value]="warehouse.id">
+        {{ warehouse.name }}
+      </mat-option>
+    </mat-select>
+    <mat-error
+      *ngIf="
+        warehouseForm.get('warehouseId')?.invalid &&
+        warehouseForm.get('warehouseId')?.touched
+      "
+    >
+      Warehouse is required.
+    </mat-error>
+  </mat-form-field>
+
+  <input type="hidden" formControlName="userId" />
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <button
+    mat-stroked-button
+    type="submit"
+    class="btn btn-primary form-btn"
+    [disabled]="isLoading"
+  >
+    <span *ngIf="isLoading">Creating...</span>
+    <span *ngIf="!isLoading">Create Document</span>
+  </button>
+</form>

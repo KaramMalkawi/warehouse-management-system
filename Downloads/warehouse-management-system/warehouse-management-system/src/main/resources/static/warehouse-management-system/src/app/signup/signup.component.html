@@ -1,0 +1,114 @@
+<form [formGroup]="signupForm" (ngSubmit)="handleSubmit()" class="form">
+  <h2 class="form-title">Signup</h2>
+
+  <!-- First Name Field -->
+  <mat-form-field class="example-full-width">
+    <mat-label>First Name</mat-label>
+    <input
+      matInput
+      formControlName="firstName"
+      placeholder="Enter First Name"
+    />
+    <mat-error *ngIf="signupForm.get('firstName')?.hasError('required')">
+      First name is required
+    </mat-error>
+    <mat-error *ngIf="signupForm.get('firstName')?.hasError('minlength')">
+      First name must be at least 3 characters
+    </mat-error>
+    <mat-error *ngIf="signupForm.get('firstName')?.hasError('maxlength')">
+      First name cannot exceed 25 characters
+    </mat-error>
+    <mat-error *ngIf="signupForm.get('firstName')?.hasError('pattern')">
+      First name must contain only letters
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Last Name Field -->
+  <mat-form-field class="example-full-width">
+    <mat-label>Last Name</mat-label>
+    <input matInput formControlName="lastName" placeholder="Enter Last Name" />
+    <mat-error *ngIf="signupForm.get('lastName')?.hasError('required')">
+      Last name is required
+    </mat-error>
+    <mat-error *ngIf="signupForm.get('lastName')?.hasError('minlength')">
+      Last name must be at least 3 characters
+    </mat-error>
+    <mat-error *ngIf="signupForm.get('lastName')?.hasError('maxlength')">
+      Last name cannot exceed 25 characters
+    </mat-error>
+    <mat-error *ngIf="signupForm.get('lastName')?.hasError('pattern')">
+      Last name must contain only letters
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Username Field -->
+  <mat-form-field class="example-full-width">
+    <mat-label>Username</mat-label>
+    <input matInput formControlName="username" placeholder="Enter Username" />
+    <mat-error *ngIf="signupForm.get('username')?.hasError('required')">
+      Username is required
+    </mat-error>
+    <mat-error *ngIf="signupForm.get('username')?.hasError('minlength')">
+      Username must be at least 3 characters
+    </mat-error>
+    <mat-error *ngIf="signupForm.get('username')?.hasError('maxlength')">
+      Username cannot exceed 25 characters
+    </mat-error>
+    <mat-error *ngIf="signupForm.get('username')?.hasError('pattern')">
+      Username must contain only letters
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Email Field -->
+  <mat-form-field class="example-full-width">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" placeholder="Enter Email" />
+    <mat-error *ngIf="signupForm.get('email')?.hasError('required')">
+      Email is required
+    </mat-error>
+    <mat-error *ngIf="signupForm.get('email')?.hasError('email')">
+      Please enter a valid email address
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Password Field -->
+  <mat-form-field class="example-full-width">
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      type="password"
+      formControlName="password"
+      placeholder="Enter Password"
+    />
+    <mat-error *ngIf="signupForm.get('password')?.hasError('required')">
+      Password is required
+    </mat-error>
+    <mat-error *ngIf="signupForm.get('password')?.hasError('minlength')">
+      Password must be at least 8 characters long
+    </mat-error>
+    <mat-error *ngIf="signupForm.get('password')?.hasError('pattern')">
+      Password must include uppercase, lowercase letters, numbers, and special
+      characters
+    </mat-error>
+  </mat-form-field>
+
+  <!-- User Type Field -->
+  <mat-form-field class="example-full-width">
+    <mat-label>User Type</mat-label>
+    <mat-select formControlName="userType" required>
+      <mat-option value="Manager">Manager</mat-option>
+      <mat-option value="Employee">Employee</mat-option>
+    </mat-select>
+    <mat-error *ngIf="signupForm.get('userType')?.hasError('required')">
+      User type is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Submit Button -->
+  <button mat-stroked-button type="submit" class="btn btn-primary form-btn">
+    Create Account
+  </button>
+
+  <!-- Login Link -->
+  <a class="form-link" (click)="navigateToLogin()">Already have an account? Log in</a>
+</form>

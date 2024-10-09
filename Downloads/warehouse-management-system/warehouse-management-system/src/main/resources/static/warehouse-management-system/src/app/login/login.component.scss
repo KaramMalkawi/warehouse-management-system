@@ -1,0 +1,46 @@
+.form {
+    height: min-content;
+    width: 450px;
+    background-color: rgba(255, 255, 255, 0.13);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 55%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px #aaaaaa;
+    padding: 50px 35px;
+}
+
+.form-title {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.form-btn {
+    width: 100%;
+    font-weight: 600 !important;
+}
+
+.form-link {
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    display: block;
+    margin: 25px 0 10px;
+    cursor: pointer;
+    color: #005CBB;
+
+}
+
+.form-link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}

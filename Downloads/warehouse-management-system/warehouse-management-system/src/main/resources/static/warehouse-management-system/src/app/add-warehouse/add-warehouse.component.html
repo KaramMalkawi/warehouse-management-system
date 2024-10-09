@@ -1,0 +1,94 @@
+<app-manager-navbar></app-manager-navbar>
+
+<form [formGroup]="warehouseForm" (ngSubmit)="handleSubmit()" class="form">
+  <h2 class="form-title">Add Warehouse</h2>
+
+  <!-- Name Field with Error Message -->
+  <mat-form-field class="example-full-width">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" placeholder="Enter Name" required />
+    <!-- Error Messages for Name Field -->
+    <mat-error *ngIf="warehouseForm.get('name')?.hasError('required')">
+      Name is required
+    </mat-error>
+    <mat-error *ngIf="warehouseForm.get('name')?.hasError('minlength')">
+      Name must be at least 3 characters
+    </mat-error>
+    <mat-error *ngIf="warehouseForm.get('name')?.hasError('maxlength')">
+      Name cannot exceed 10 characters
+    </mat-error>
+    <mat-error *ngIf="warehouseForm.get('name')?.hasError('pattern')">
+      Name can only contain letters
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Description Field with Error Message -->
+  <mat-form-field class="example-full-width">
+    <mat-label>Description</mat-label>
+    <input
+      matInput
+      formControlName="description"
+      placeholder="Enter Description"
+    />
+    <!-- Error Messages for Description Field -->
+    <mat-error *ngIf="warehouseForm.get('description')?.hasError('minlength')">
+      Description must be at least 3 characters
+    </mat-error>
+    <mat-error *ngIf="warehouseForm.get('description')?.hasError('maxlength')">
+      Description cannot exceed 50 characters
+    </mat-error>
+    <mat-error *ngIf="warehouseForm.get('description')?.hasError('pattern')">
+      Description can only contain letters
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Hidden userId field (disabled) -->
+  <input type="hidden" formControlName="userId" />
+  <!-- Error Messages for userId Field (optional, in case of future usage) -->
+  <mat-error *ngIf="warehouseForm.get('userId')?.hasError('required')">
+    User ID is required
+  </mat-error>
+
+  <!-- Error Message (optional general error) -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Submit Button with Loading State -->
+  <button
+    mat-stroked-button
+    type="submit"
+    class="btn btn-primary form-btn"
+    [disabled]="isLoading || warehouseForm.invalid"
+  >
+    <span *ngIf="isLoading">Creating...</span>
+    <span *ngIf="!isLoading">Create Warehouse</span>
+  </button>
+</form>
+
+<!-- <app-manager-navbar></app-manager-navbar>
+
+<form [formGroup]="warehouseForm" (ngSubmit)="handleSubmit()" class="form">
+  <h2 class="form-title">Add Warehouse</h2>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" placeholder="Enter Name" required>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Description</mat-label>
+    <input matInput formControlName="description" placeholder="Enter Description">
+  </mat-form-field>
+
+  <input type="hidden" formControlName="userId"> <!-- Optional: hidden userId field ->
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <button mat-stroked-button type="submit" class="btn btn-primary form-btn" [disabled]="isLoading">
+    <span *ngIf="isLoading">Creating...</span>
+    <span *ngIf="!isLoading">Create Warehouse</span>
+  </button>
+</form> -->
